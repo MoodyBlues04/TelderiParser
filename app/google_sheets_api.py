@@ -10,6 +10,13 @@ class GoogleSheetsApi:
         self.__worksheet = None
         self.set_worksheet(worksheet_title)
 
+    @property
+    def sheet(self) -> pygsheets.Spreadsheet:
+        return self.__sheet
+
+    def all_worksheets(self) -> list[str]:
+        return list(map(lambda el: el.title, self.__sheet.worksheets()))
+
     def set_worksheet(self, title: str) -> None:
         try:
             self.__worksheet = self.__sheet.worksheet_by_title(title)
@@ -43,14 +50,14 @@ class GoogleSheetsApi:
         row_list = self.get_row(row)
         return len(row_list) > 0
 
-    def get_row(self, row: int, return_as: str = 'cell'):
+    def get_row(self, row: int, return_as: str = 'matrix'):
         return self.__worksheet.get_row(row, return_as, include_tailing_empty=False)
 
     def get_first_empty_row(self, col: int = 1) -> int:
         col_data = self.get_col(col)
         return len(col_data) + 1
 
-    def get_col(self, col: int, return_as: str = 'cell'):
+    def get_col(self, col: int, return_as: str = 'matrix'):
         return self.__worksheet.get_col(col, return_as, include_tailing_empty=False)
 
     def share(self, email_or_domain: str, role: str = 'reader', type: str = 'user') -> None:
