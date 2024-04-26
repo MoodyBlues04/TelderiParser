@@ -26,7 +26,7 @@ class TelderiParser:
         if getenv('CHROME_PATH'):
             options = Options()
             options.headless = True
-            self.__browser = webdriver.Chrome(executable_path=getenv('CHROME_PATH'), options=options)
+            self.__browser = webdriver.Chrome(getenv('CHROME_PATH'), options=options)
         else:
             self.__browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
