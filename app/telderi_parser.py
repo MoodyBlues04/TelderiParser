@@ -18,8 +18,9 @@ class TelderiParser:
     TRAFFIC_ELS_XPATH = '/html/body/div[1]/div/div[2]/div[4]/div/div/div/div/div[1]/div/div[3]/div[1]/div[10]/div[1]/div[11]/div/div[1]/div'
 
     PAGES_COUNT = 122
-
     MAX_BATCH_SIZE = 40
+
+    __browser: webdriver
 
     def __init__(self, gsheets_service: GoogleSheetsService):
         if getenv('CHROME_PATH'):
