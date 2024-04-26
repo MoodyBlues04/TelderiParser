@@ -8,7 +8,6 @@ from selenium.webdriver.remote.webdriver import WebElement
 from typing import Callable
 from gsheets_service import GoogleSheetsService
 from selenium.webdriver.chrome.options import Options
-from os import getenv
 
 
 class TelderiParser:
@@ -25,6 +24,7 @@ class TelderiParser:
         options.add_argument('--headless')
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
+        options.add_argument('window-size=1200x1040')
         self.__browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
         self.__gsheets_service = gsheets_service
 
