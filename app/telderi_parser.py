@@ -28,7 +28,7 @@ class TelderiParser:
             options.add_argument('--headless')
             options.add_argument('--no-sandbox')
             options.add_argument('--disable-dev-shm-usage')
-            self.__browser = webdriver.Chrome(service=Service(executable_path=getenv('CHROME_PATH')), options=options)
+            self.__browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
         else:
             self.__browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
