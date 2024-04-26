@@ -20,18 +20,12 @@ class TelderiParser:
     PAGES_COUNT = 122
     MAX_BATCH_SIZE = 40
 
-    __browser: webdriver
-
     def __init__(self, gsheets_service: GoogleSheetsService):
-        if getenv('CHROME_PATH'):
-            options = Options()
-            options.add_argument('--headless')
-            options.add_argument('--no-sandbox')
-            options.add_argument('--disable-dev-shm-usage')
-            self.__browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-        else:
-            self.__browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-
+        options = Options()
+        options.add_argument('--headless')
+        options.add_argument('--no-sandbox')
+        options.add_argument('--disable-dev-shm-usage')
+        self.__browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
         self.__gsheets_service = gsheets_service
 
     # def __del__(self):
