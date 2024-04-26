@@ -43,6 +43,13 @@ class GoogleSheetsApi:
             self.set_row(row_idx, row)
             row_idx += 1
 
+    def add_values(self, rows: list[list]) -> None:
+        row_idx = self.get_first_empty_row()
+        self.update_values((row_idx, 1), rows)
+
+    def update_values(self, start_cell: tuple, cells: list[list]) -> None:
+        self.__worksheet.update_values(crange=start_cell, values=cells)
+
     def set_row(self, row: int, row_data: list) -> None:
         self.__worksheet.update_row(row, row_data)
 
