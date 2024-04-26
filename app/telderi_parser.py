@@ -52,6 +52,7 @@ class TelderiParser:
             sites_elements = self.__browser.find_elements(By.XPATH, self.LINK_XPATH)
             for site_el in sites_elements:
                 telderi_url = site_el.get_attribute('href')
+                print(telderi_url)
                 if not predicate(telderi_url):
                     continue
 
