@@ -9,7 +9,7 @@ SHEET_ID = '1xkhXmZlNsyCYC4qiMrwywcVJl-EhZ_2IqD5xOvMzVmw'
 
 
 def main():
-    sheets_service = GoogleSheetsService(SHEET_ID, date.today().strftime('%Y.%m.%d'))
+    sheets_service = GoogleSheetsService(SHEET_ID, date.today().strftime('%d.%m.%Y'))
 
     all_urls = sheets_service.get_all_urls()
     parser = TelderiParser(sheets_service)
