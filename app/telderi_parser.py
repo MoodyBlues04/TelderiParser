@@ -6,7 +6,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebElement
 from typing import Callable, Tuple, Any
-from app.gsheets_service import GoogleSheetsService
+from gsheets_service import GoogleSheetsService
 
 
 class TelderiParser:
