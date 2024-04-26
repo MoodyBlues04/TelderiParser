@@ -32,9 +32,9 @@ class TelderiParser:
 
         self.__gsheets_service = gsheets_service
 
-    def __del__(self):
-        self.__browser.close()
-        self.__browser.quit()
+    # def __del__(self):
+    #     self.__browser.close()
+    #     self.__browser.quit()
 
     def parse_sites_data(self, predicate: Callable[[str], bool] | None = None) -> None:
         if predicate is None:
