@@ -5,8 +5,10 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebElement
-from typing import Callable, Tuple, Any
+from typing import Callable
 from gsheets_service import GoogleSheetsService
+from selenium.webdriver.chrome.options import Options
+from os import getenv
 
 
 class TelderiParser:
@@ -20,8 +22,18 @@ class TelderiParser:
     MAX_BATCH_SIZE = 40
 
     def __init__(self, gsheets_service: GoogleSheetsService):
-        self.__browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+        if getenv('CHROME_PATH'):
+            options = Options()
+            options.headless = True
+            self.__browser = webdriver.Chrome(service=getenv('CHROME_PATH'), options=options)
+        else:
+            self.__browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+
         self.__gsheets_service = gsheets_service
+
+    def __del__(self):
+        self.__browser.close()
+        self.__browser.quit()
 
     def parse_sites_data(self, predicate: Callable[[str], bool] | None = None) -> None:
         if predicate is None:
