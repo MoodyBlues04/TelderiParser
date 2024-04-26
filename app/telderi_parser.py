@@ -28,8 +28,8 @@ class TelderiParser:
         options.add_argument('--ignore-certificate-errors')
         options.add_argument('--ignore-ssl-errors')
         options.add_argument('--allow-running-insecure-content')
-        user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36'
-        options.add_argument(f'user-agent={user_agent}')
+        # user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36'
+        # options.add_argument(f'user-agent={user_agent}')
         options.add_argument('log-level=3')
         self.__browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
         self.__gsheets_service = gsheets_service
@@ -56,7 +56,9 @@ class TelderiParser:
                 sites_data.clear()
 
             sites_elements = self.__browser.find_elements(By.XPATH, self.LINK_XPATH)
-            for site_el in sites_elements:
+            for idx, site_el in enumerate(sites_elements):
+                print(f'{idx}/{len(sites_elements)}')
+                
                 telderi_url = site_el.get_attribute('href')
                 if not predicate(telderi_url):
                     continue
