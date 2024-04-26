@@ -25,7 +25,9 @@ class TelderiParser:
     def __init__(self, gsheets_service: GoogleSheetsService):
         if getenv('CHROME_PATH'):
             options = Options()
-            options.headless = True
+            options.add_argument('--headless')
+            options.add_argument('--no-sandbox')
+            options.add_argument('--disable-dev-shm-usage')
             self.__browser = webdriver.Chrome(service=Service(executable_path=getenv('CHROME_PATH')), options=options)
         else:
             self.__browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
