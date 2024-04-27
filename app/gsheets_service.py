@@ -19,14 +19,15 @@ class GoogleSheetsService:
         for worksheet_idx, worksheet_title in enumerate(worksheets):
             self.__api.set_worksheet(worksheet_title)
             headers = list(self.__api.get_row(1))
-            if not urls_col_header in headers:
+            if urls_col_header not in headers:
                 continue
 
             col_index = headers.index(urls_col_header) + 1
             urls_column = self.__api.get_col(col_index)
+            urls_column = set(map(lambda url: url.strip(), urls_column))
 
             if len(urls_column):
-                all_urls = all_urls.union(set(urls_column))
+                all_urls = all_urls.union(urls_column)
 
             if log:
                 print(f"Worksheet: {worksheet_idx + 1}/{len(worksheets)}. "

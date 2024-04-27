@@ -66,7 +66,7 @@ class TelderiParser:
                 sites_data.append(self.__get_site_data(site_el, telderi_url))
 
             self.__browser.find_element(By.XPATH, self.NEXT_PAGE_XPATH).click()
-            time.sleep(4)
+            time.sleep(6)
 
         if len(sites_data) > 0:
             self.__gsheets_service.add_telderi_rows(sites_data)
