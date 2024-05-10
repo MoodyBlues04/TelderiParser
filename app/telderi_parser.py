@@ -102,7 +102,8 @@ class TelderiParser:
     def parse_domains_data(self, predicate: Callable[[str], bool] | None = None) -> None:
         # TODO remove copy-paste when have time (base class with abstract methods for each parsing type)
 
-        if predicate is None:
+        # if predicate is None:
+        if True:
             predicate = lambda el: True
 
         domains_data = []
