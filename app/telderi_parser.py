@@ -149,11 +149,14 @@ class TelderiParser:
         remaining_time = remaining_time_el.text
 
         age_els = site_el.find_elements(By.XPATH, './div/div[2]/div/div[2]/div[2]/div/div[2]/p')
-        age = age_els[0].text if len(age_els) else None
+        age = age_els[0].text if len(age_els) else ''
+
+        theme_els = site_el.find_elements(By.XPATH, './div/div[2]/div/div[1]/p')
+        theme = theme_els[0].text if len(theme_els) else ''
 
         time.sleep(3)
 
-        return [domain_url, remaining_time, 'theme', 'dr', iks, telderi_url, age]
+        return [domain_url, remaining_time, theme, '', iks, telderi_url, age]
 
     def __get_traffic_by_key(self, *keys: str) -> list:
         from selenium.common.exceptions import NoSuchElementException
