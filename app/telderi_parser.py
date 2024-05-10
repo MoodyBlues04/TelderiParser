@@ -102,8 +102,7 @@ class TelderiParser:
     def parse_domains_data(self, predicate: Callable[[str], bool] | None = None) -> None:
         # TODO remove copy-paste when have time (base class with abstract methods for each parsing type)
 
-        # if predicate is None:
-        if True:
+        if predicate is None:
             predicate = lambda el: True
 
         domains_data = []
@@ -128,8 +127,6 @@ class TelderiParser:
                     continue
 
                 domains_data.append(self.__get_domain_data(site_el, telderi_url))
-                print(domains_data)
-                exit(0)
 
             self.__browser.find_element(By.XPATH, self.NEXT_PAGE_XPATH).click()
             time.sleep(6)
