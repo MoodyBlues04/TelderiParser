@@ -4,7 +4,7 @@ from google_sheets_api import GoogleSheetsApi
 class GoogleSheetsService:
     URLS_COL_HEADER = 'Ссылка на аукцион'
     __TELDERI_SITES_HEADERS = ['Ссылка', 'Domain Rating Ahrefs (bot)', 'Links Ahrefs (bot)', 'Total Traffic', 'Google трафик', 'Yandex трафик', 'Время', 'ИКС', 'Ссылка на аукцион']
-    __TELDERI_DOMAINS_HEADERS = ['Ссылка', 'Время', 'ИКС', 'Ссылка на аукцион', 'Возраст']
+    __TELDERI_DOMAINS_HEADERS = ['Ссылка', 'Время', 'Тематика', 'DR', 'ИКС', 'Ссылка на аукцион', 'Возраст']
 
     def __init__(self, sheet_id: str, worksheet_title: str) -> None:
         self.__sheet_id = sheet_id
