@@ -150,7 +150,7 @@ class TelderiParser:
 
         time.sleep(3)
 
-        return [domain_url, remaining_time, iks, telderi_url, age]
+        return [domain_url, remaining_time, 'theme', 'dr', iks, telderi_url, age]
 
     def __get_traffic_by_key(self, *keys: str) -> list:
         from selenium.common.exceptions import NoSuchElementException
