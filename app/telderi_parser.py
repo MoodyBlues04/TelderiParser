@@ -68,7 +68,11 @@ class TelderiParser:
 
                 sites_data.append(self.__get_site_data(site_el, telderi_url))
 
-            self.__browser.find_element(By.XPATH, self.NEXT_PAGE_XPATH).click()
+            btns = self.__browser.find_elements(By.XPATH, self.NEXT_PAGE_XPATH)
+            if not len(btns):
+                break
+            btns[0].click()
+
             time.sleep(6)
 
         if len(sites_data) > 0:
@@ -128,7 +132,11 @@ class TelderiParser:
 
                 domains_data.append(self.__get_domain_data(site_el, telderi_url))
 
-            self.__browser.find_element(By.XPATH, self.NEXT_PAGE_XPATH).click()
+            btns = self.__browser.find_elements(By.XPATH, self.NEXT_PAGE_XPATH)
+            if not len(btns):
+                break
+            btns[0].click()
+            
             time.sleep(6)
 
         if len(domains_data) > 0:
