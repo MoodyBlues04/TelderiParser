@@ -8,6 +8,7 @@ from selenium.webdriver.remote.webdriver import WebElement
 from typing import Callable
 from gsheets_service import GoogleSheetsService
 from selenium.webdriver.chrome.options import Options
+from selenium.common.exceptions import ElementClickInterceptedException
 
 
 class TelderiParser:
@@ -68,10 +69,10 @@ class TelderiParser:
 
                 sites_data.append(self.__get_site_data(site_el, telderi_url))
 
-            btns = self.__browser.find_elements(By.XPATH, self.NEXT_PAGE_XPATH)
-            if not len(btns):
+            try:
+                self.__browser.find_element(By.XPATH, self.NEXT_PAGE_XPATH).click()
+            except ElementClickInterceptedException:
                 break
-            btns[0].click()
 
             time.sleep(6)
 
@@ -132,10 +133,10 @@ class TelderiParser:
 
                 domains_data.append(self.__get_domain_data(site_el, telderi_url))
 
-            btns = self.__browser.find_elements(By.XPATH, self.NEXT_PAGE_XPATH)
-            if not len(btns):
+            try:
+                self.__browser.find_element(By.XPATH, self.NEXT_PAGE_XPATH).click()
+            except ElementClickInterceptedException:
                 break
-            btns[0].click()
             
             time.sleep(6)
 
