@@ -141,7 +141,7 @@ class TelderiParser:
             time.sleep(6)
 
         if len(domains_data) > 0:
-            self.__gsheets_service.add_telderi_sites_rows(domains_data)
+            self.__gsheets_service.add_telderi_domains_rows(domains_data)
             print(f'Telderi sites set to sheet. Rows added: {len(domains_data)}')
 
     def __get_domain_data(self, site_el: WebElement, telderi_url: str) -> list:
